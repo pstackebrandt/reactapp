@@ -14,7 +14,6 @@ const App = () => {
 // Komponente, die das Laden eines Arrays voller Texte simuliert
 const Inhalte = () => {
   let [inhalte, setInhalte] = useState([]); // State für die Inhalte is empty at first
-  let [eingabe, setEingabe] = useState(''); 
 
   // Dieser Effect-Hook sol beim Einbinden der Komponente einmal gefeuert werden.
   useEffect(() => {
@@ -35,25 +34,14 @@ const Inhalte = () => {
   // Funktion, die aus dem Text-Array ein Komponenten-Array macht
   const createContents = () => inhalte.map((inhalt, index) => <ParagraphWithCharacterCounter content={inhalt} key={`inhalt${index}`} />);
 
-  const updateEingabe = evt => {
-    setEingabe( evt.target.value);
-  }
-
-  const addText = () => {
-    setInhalte([...inhalte, eingabe]);
-    setEingabe('');
-  }
-
   return (
     <>
       <Ueberschrift content="Tips to fall asleep faster" />
       {createContents()}
-
-      <input type="text" value={eingabe} onInput={updateEingabe} placeholder='Write your tip here!'/>
-      <button onClick={addText}>Add urgend tip</button>
     </>
   )
 }
+
 
   // Es dürfen keine HTML-Tagnamen als Komponenten verwendet werden.
   const Ueberschrift = props => <h3>{props.content}</h3>
